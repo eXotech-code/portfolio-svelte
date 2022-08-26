@@ -17,8 +17,11 @@ export interface BlogPost {
 
 export interface Project {
     name: string;
+    tagline: string;
     nameHeight: number;
     description: Array<string>;
     link: string;
     banner: Array<string>;
 }
+
+export type Point = [number, number];

@@ -2,6 +2,7 @@
     "projects": [
         {
             "name": "Aproxymatoinator",
+            "tagline": "The Ordinary Differential equation solver.",
             "nameHeight": 10,
             "description": [
                 "Have you ever needed to numerically compute a result to a complicated system of ordinary differental equations (ODEs). Well, I had. So I wrote a slick web application that does all the hard work for me and on top of that it can display the result in the form of beautiful-looking graph.",
@@ -9,10 +10,14 @@
                 "Aproxymatoinator is highly flexible. The algorithms used for computation can be switched on the fly and results of computation using both algorithms can be compared on the graph. Also, the user can provide information that changes the way, that Aproxymatoinator computes the differential equations such as: amount of steps and step size which both can be used to fine-tune the accuracy of computation"
             ],
             "link": "https://github.com/eXotech-code/aproxymatoinator",
-            "banner": ["../../assets/media/aproxymatoinator.webp", "../../assets/media/aproxymatoinator-mobile.webp"]
+            "banner": [
+                "projects/aproxymatoinator.webp",
+                "projects/aproxymatoinator-mobile.webp"
+            ]
         },
         {
             "name": "BMB",
+            "tagline": "The modular C++ server.",
             "nameHeight": 28,
             "description": [
                 "Short for \"Basic Multipurpose Backend\". This project is my journey into low-level APIs that serve us the Internet.",
@@ -20,7 +25,10 @@
                 "An interesting future project could be to make a buffer module that stays between the front-end module and the database module and caches the latest couple or the most common responses to requests in RAM memory of the machine. This could improve the performance of request handling significantly."
             ],
             "link": "https://github.com/eXotech-code/BMB",
-            "banner": ["../../assets/media/bmb.webp", "../../assets/media/bmb-mobile.webp"]
+            "banner": [
+                "projects/bmb.webp",
+                "projects/bmb-mobile.webp"
+            ]
         }
     ]
 }

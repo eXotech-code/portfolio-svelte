@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArrowRight from "carbon-icons-svelte/lib/ArrowRight.svelte";
+	import arrowRight from "$lib/icons/arrow-right.svg";
 	import Tag from "$lib/components/Tag.svelte";
 	import type { BlogPost } from "$lib/types";
 
@@ -21,7 +21,7 @@
 		</div>
 		<button>
 			<p>Read this</p>
-			<ArrowRight size={16} />
+			<img alt="icon" src={arrowRight} class="icon" />
 		</button>
 	</div>
 </div>
@@ -36,8 +36,7 @@
 	}
 
 	img {
-		width: 100%;
-		height: auto;
+		@include sixteen-by-nine;
 	}
 
 	.text {
@@ -60,6 +59,7 @@
 
 	.description {
 		font-size: 1rem;
+		font-weight: 300;
 	}
 
 	.tags {
@@ -84,9 +84,16 @@
 			background: #000;
 			color: #fff;
 			cursor: pointer;
+			img {
+				filter: invert(100%);
+			}
 		}
 		&:active {
 			background: #393939;
+		}
+		img {
+			width: 1rem;
+			height: 1rem;
 		}
 	}
 </style>

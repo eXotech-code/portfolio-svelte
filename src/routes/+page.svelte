@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { ArrowRight } from "carbon-icons-svelte";
+	import arrowRight from "$lib/icons/arrow-right.svg";
+	import Lines from "$lib/components/Lines.svelte";
 	import BlogShowcase from "./BlogShowcase.svelte";
+	import Projects from "./Projects.svelte";
+	import Contact from "./Contact.svelte";
 </script>
 
 <section class="banner">
@@ -10,14 +13,19 @@
 		<div class="button-holder">
 			<button>
 				<p>Contact me</p>
-				<ArrowRight size={16} class="icon" />
+				<img alt="icon" src={arrowRight} class="icon" />
 				<div />
 			</button>
 		</div>
 	</div>
+	<div class="graphic">
+		<Lines />
+	</div>
 </section>
 <hr />
 <BlogShowcase />
+<Projects />
+<Contact />
 
 <style lang="scss">
 	@import "../lib/_vars";
@@ -46,12 +54,6 @@
 		h1,
 		h2 {
 			font-family: "PlayFair Display", serif;
-		}
-
-		/* Workaround for icons from carbon-icons-svelte
-		 * not reacting to local changes in z-index. */
-		svg {
-			z-index: 2;
 		}
 	}
 
@@ -96,5 +98,9 @@
 	hr {
 		border-color: #000;
 		margin: 0;
+	}
+
+	.graphic {
+		grid-area: graphic;
 	}
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Post from "./Post.svelte";
-	import ArrowRight from "carbon-icons-svelte/lib/ArrowRight.svelte";
+	import arrowRight from "$lib/icons/arrow-right.svg";
 	import blog from "$lib/blog.json";
 	const posts = blog.posts;
 </script>
@@ -22,7 +22,7 @@
 			<h1>Still thirsty?</h1>
 			<button>
 				<p>Check out my blog</p>
-				<ArrowRight class="icon" />
+				<img alt="icon" src={arrowRight} class="icon" />
 				<div />
 			</button>
 		</div>
