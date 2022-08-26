@@ -1,0 +1,26 @@
+{
+    "projects": [
+        {
+            "name": "Aproxymatoinator",
+            "nameHeight": 10,
+            "description": [
+                "Have you ever needed to numerically compute a result to a complicated system of ordinary differental equations (ODEs). Well, I had. So I wrote a slick web application that does all the hard work for me and on top of that it can display the result in the form of beautiful-looking graph.",
+                "Aproxymatoinator has two modes of computation. In the first one it can approximate the result of a system of ODEs using Euler's method which is a simpler method of computation than the one provided by the second mode - RK4 which is Runge-Kutta's method of computation that uses four intermediate steps for each computational step.",
+                "Aproxymatoinator is highly flexible. The algorithms used for computation can be switched on the fly and results of computation using both algorithms can be compared on the graph. Also, the user can provide information that changes the way, that Aproxymatoinator computes the differential equations such as: amount of steps and step size which both can be used to fine-tune the accuracy of computation"
+            ],
+            "link": "https://github.com/eXotech-code/aproxymatoinator",
+            "banner": ["../../assets/media/aproxymatoinator.webp", "../../assets/media/aproxymatoinator-mobile.webp"]
+        },
+        {
+            "name": "BMB",
+            "nameHeight": 28,
+            "description": [
+                "Short for \"Basic Multipurpose Backend\". This project is my journey into low-level APIs that serve us the Internet.",
+                "From the start I envisioned this project as something greater than just a simple web server. Right now the core of BMB is the front-end module responsible for handling REST requests and communication with other modules such as the database module which I have already created. It makes calls to MySQL Connector/C++ and retrieves any information that the client can ask the web server for.",
+                "An interesting future project could be to make a buffer module that stays between the front-end module and the database module and caches the latest couple or the most common responses to requests in RAM memory of the machine. This could improve the performance of request handling significantly."
+            ],
+            "link": "https://github.com/eXotech-code/BMB",
+            "banner": ["../../assets/media/bmb.webp", "../../assets/media/bmb-mobile.webp"]
+        }
+    ]
+}

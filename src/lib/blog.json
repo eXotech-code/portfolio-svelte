@@ -1,0 +1,170 @@
+{
+  "posts": [
+    {
+      "id": 3,
+      "image": true,
+      "title": "Writing assembly code for the M2",
+      "date": "23rd August 2022 at 22:10",
+      "description": "I decided to pretend for a day that I’m still living in the 60s so you don’t have to.",
+      "tags": [
+        {
+          "text": "programming",
+          "borderColor": [
+            174,
+            71,
+            98
+          ]
+        },
+        {
+          "text": "low-level",
+          "borderColor": [
+            108,
+            212,
+            255
+          ]
+        },
+        {
+          "text": "unix",
+          "borderColor": [
+            242,
+            18,
+            2
+          ]
+        },
+        {
+          "text": "mac-os",
+          "borderColor": [
+            43,
+            120,
+            120
+          ]
+        }
+      ],
+      "alt": "The Mac M1 family"
+    },
+    {
+      "id": 2,
+      "image": true,
+      "title": "The story of how I replicated Razer Book 13 in Blender",
+      "date": "22th August 2022 at 10:10",
+      "description": "Or in other words: “how to create a project picture with maximum amount of effort”.",
+      "tags": [
+        {
+          "text": "computer-graphics",
+          "borderColor": [
+            125,
+            112,
+            186
+          ]
+        },
+        {
+          "text": "3d",
+          "borderColor": [
+            43,
+            182,
+            168
+          ]
+        },
+        {
+          "text": "blender",
+          "borderColor": [
+            221,
+            189,
+            213
+          ]
+        },
+        {
+          "text": "portfolio",
+          "borderColor": [
+            230,
+            175,
+            46
+          ]
+        }
+      ],
+      "alt": "The picture of my Blender creation"
+    },
+    {
+      "id": 1,
+      "image": false,
+      "title": "Portfolio dev log part 2",
+      "date": "21th August 2022 at 20:10",
+      "description": "This is the day when I told myself “scrap this crap”.",
+      "tags": [
+        {
+          "text": "javascript",
+          "borderColor": [
+            243,
+            167,
+            56
+          ]
+        },
+        {
+          "text": "svelte",
+          "borderColor": [
+            0,
+            159,
+            147
+          ]
+        },
+        {
+          "text": "programming",
+          "borderColor": [
+            174,
+            71,
+            98
+          ]
+        },
+        {
+          "text": "portfolio",
+          "borderColor": [
+            230,
+            175,
+            46
+          ]
+        }
+      ]
+    },
+    {
+      "id": 0,
+      "image": false,
+      "title": "Portfolio dev log part 1",
+      "date": "20th August 2022 at 20:10",
+      "description": "Ah the beginnings. The times when everything seemed so simple.",
+      "tags": [
+        {
+          "text": "javascript",
+          "borderColor": [
+            243,
+            167,
+            56
+          ]
+        },
+        {
+          "text": "angular",
+          "borderColor": [
+            255,
+            83,
+            118
+          ]
+        },
+        {
+          "text": "programming",
+          "borderColor": [
+            174,
+            71,
+            98
+          ]
+        },
+        {
+          "text": "portfolio",
+          "borderColor": [
+            230,
+            175,
+            46
+          ]
+        }
+      ]
+    }
+  ]
+}

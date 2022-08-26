@@ -1,0 +1,52 @@
+$fresh-salmon: #FFEFDC;
+
+@mixin button-primary($width) {
+    button {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+        gap: 2rem;
+        width: $width;
+        height: fit-content;
+        font-weight: 400;
+        border: none;
+        background: #000;
+        color: #fff;
+        position: relative;
+
+        p {
+            z-index: 2;
+        }
+
+        div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: $fresh-salmon;
+            width: 0%;
+            height: 0%;
+            transition: width 0.25s ease-out, height 0.25s ease-out;
+            z-index: 1;
+        }
+
+        &:hover,
+        &:active {
+            color: #000;
+
+            div {
+                width: calc(100% - 2px);
+                height: calc(100% - 2px);
+            }
+
+            .icon {
+                fill: #000;
+            }
+        }
+
+        &:active div {
+            filter: brightness(90%);
+        }
+    }
+}
