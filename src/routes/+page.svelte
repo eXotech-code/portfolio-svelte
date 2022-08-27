@@ -8,7 +8,7 @@
 
 <section class="banner">
 	<div class="banner-text">
-		<h1>So...<br />Tell what do you need for your new venture.</h1>
+		<h1>So...<br />Tell me what do you need for your new venture.</h1>
 		<h3>...and let me worry about the details.</h3>
 		<div class="button-holder">
 			<button>
@@ -101,6 +101,11 @@
 	}
 
 	.graphic {
-		grid-area: graphic;
+		position: absolute;
+		height: 90%;
+		width: 50%;
+		right: 0;
+		top: -1rem;
+		z-index: -1;
 	}
 </style>
