@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Point } from "$lib/types";
 	import { onMount } from "svelte";
+	import randInt from "$lib/utility/randInt";
 
 	// CONSTANTS
 	const MAX_ANG = 110; // Max angle between lines
@@ -12,11 +13,6 @@
 	const MAX_CALLS = 100; // The maximum retries possible in searching for the new point matching distance criteria.
 	const REGEN_POINT = <Point>[-1, -1]; // Thing to return when newPoint function requires regeneration of the whole pattern.
 	const BOUND_TOLERANCE = 0.6; // Percentage signifying how many points can not fit inside canvas.
-
-	const randInt = (min: number, max: number) => {
-		const rand = Math.random();
-		return Math.floor(rand * (max - min + 1)) + min;
-	};
 
 	class Path {
 		element: SVGPathElement | undefined;
@@ -181,10 +177,6 @@
 
 	onMount(() => {
 		p.drawPath();
-		// window.setInterval(() => {
-		// 	p.zero();
-		// 	p.genPath();
-		// }, 5000);
 	});
 </script>
 

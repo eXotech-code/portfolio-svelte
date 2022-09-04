@@ -25,3 +25,5 @@ export interface Project {
 }
 
 export type Point = [number, number];
+
+export type Range = [number, number, number, number];

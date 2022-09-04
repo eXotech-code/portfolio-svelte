@@ -1,5 +1,6 @@
 <script lang="ts">
 	import send from "$lib/icons/send.svg";
+	import Pulsars from "$lib/components/Pulsars.svelte";
 </script>
 
 <section class="contact">
@@ -26,6 +27,7 @@
 				<div />
 			</button>
 		</form>
+		<Pulsars />
 	</div>
 </section>
 
@@ -35,9 +37,11 @@
 	.contact {
 		display: grid;
 		grid-template-columns: 1fr 2fr 1fr;
+		position: relative;
 	}
 
 	.form-holder {
+		background: $fresh-salmon;
 		grid-column-start: 2;
 		padding: 1rem;
 		display: flex;
@@ -100,5 +104,11 @@
 
 	button {
 		align-self: center;
+	}
+
+	:global(.pulsars) {
+		z-index: -1;
+		position: absolute;
+		inset: 1rem;
 	}
 </style>
