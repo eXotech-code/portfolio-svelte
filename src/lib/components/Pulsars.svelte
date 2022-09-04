@@ -14,6 +14,7 @@
 		svg: SVGElement | undefined = undefined;
 		pulsars: Pulsar[] | undefined = undefined;
 		coordinateRange: Range | undefined = undefined;
+		intervals: number[] = [];
 
 		async downloadData(url: string): Promise<void> {
 			const resp = await fetch(url);
@@ -32,7 +33,7 @@
 			for (let i = 0; i < 100; i++) {
 				this.pulsars.push({
 					name: "FAKE PULSAR",
-					frequency: 69,
+					frequency: randInt(1, 10) / 10,
 					location: [
 						randInt(this.coordinateRange[0], this.coordinateRange[1]),
 						randInt(this.coordinateRange[2], this.coordinateRange[3])
@@ -45,6 +46,8 @@
 		// Clear the canvas.
 		clear(): void {
 			this.svg!.innerHTML = "";
+			this.intervals.forEach((i) => window.clearInterval(i));
+			this.intervals = [];
 		}
 
 		build(): void {
@@ -59,7 +62,7 @@
 
 		interval(): void {
 			this.build(); // Initial
-			window.setInterval(this.build, 36000);
+			window.setInterval(() => this.build(), 36000);
 		}
 
 		calcRange(coordSpace: Range): Point {
@@ -97,7 +100,6 @@
 				const zeroBasedInitial = initialY + 90;
 				// Calculate the position of point in the zero-based space.
 				const zeroBased = 90 + p.location[1];
-				console.log(zeroBased);
 				// Calc which part this of this new space the point takes.
 				const percentage = (zeroBased - zeroBasedInitial) / range;
 				// Calculate the position that this point will take in the svg space;
@@ -115,20 +117,42 @@
 			return pulsars;
 		}
 
+		drawPulsar(location: Point, frequency: number, name: string): void {
+			const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+			circle.setAttribute("cx", location[0].toString());
+			circle.setAttribute("cy", location[1].toString());
+			circle.setAttribute("r", "2");
+			circle.addEventListener("click", () => {
+				navigator.clipboard.writeText(name);
+				circle.classList.toggle("green");
+				window.setTimeout(() => circle.classList.toggle("green"), 500);
+			});
+			this.svg?.appendChild(circle);
+			this.intervals.push(
+				window.setInterval(() => {
+					circle.classList.toggle("pulse");
+				}, 1000 / frequency)
+			);
+		}
+
+		// Draws name of the pulsar.
+		drawInfo(name: string, location: Point): void {
+			const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			text.setAttribute("x", (location[0] - 2).toString());
+			text.setAttribute("y", (location[1] - 10).toString());
+			text.appendChild(document.createTextNode(name));
+			this.svg?.appendChild(text);
+		}
+
 		draw(): void {
 			// Calculate the range of coordinates.
 			const range = this.calcRange(<Range>this.coordinateRange);
-			console.log(range);
 			let pList = this.reprojectX(<Pulsar[]>this.pulsars, range[0], this.coordinateRange![0]);
 			pList = this.reprojectY(pList, range[1], this.coordinateRange![2]);
 			pList = this.projectToSvg(pList);
-			console.log(pList);
 			pList.forEach((l) => {
-				const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-				circle.setAttribute("cx", l.location[0].toString());
-				circle.setAttribute("cy", l.location[1].toString());
-				circle.setAttribute("r", "2");
-				this.svg?.appendChild(circle);
+				this.drawPulsar(l.location, l.frequency, l.name);
+				this.drawInfo(l.name, l.location);
 			});
 		}
 	}
@@ -141,10 +165,37 @@
 
 <svg class="pulsars" viewBox="0 0 1000 526" bind:this={map.svg} />
 
-<style>
-	:global(svg circle) {
-		fill: none;
-		stroke: #000;
-		stroke-width: 1;
+<style lang="scss">
+	@import "../_vars";
+	:global {
+		text {
+			font-family: "IBM Plex Mono", monospace;
+			font-size: 0.5rem;
+			line-height: 0.9rem;
+			opacity: 0;
+			pointer-events: none;
+			z-index: 2;
+		}
+
+		circle {
+			fill: $fresh-salmon;
+			stroke: #000;
+			stroke-width: 1;
+			pointer-events: all;
+			transition: stroke-width 0.1s ease;
+		}
+
+		circle:hover + text {
+			opacity: 1;
+		}
+
+		.pulse {
+			stroke-width: 2;
+		}
+
+		.green {
+			stroke: #2b7878;
+			fill: #2b7878;
+		}
 	}
 </style>

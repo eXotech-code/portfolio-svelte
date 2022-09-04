@@ -27,8 +27,8 @@
 				<div />
 			</button>
 		</form>
-		<Pulsars />
 	</div>
+	<Pulsars />
 </section>
 
 <style lang="scss">
@@ -38,10 +38,12 @@
 		display: grid;
 		grid-template-columns: 1fr 2fr 1fr;
 		position: relative;
+		pointer-events: none;
 	}
 
 	.form-holder {
 		background: $fresh-salmon;
+		z-index: 3;
 		grid-column-start: 2;
 		padding: 1rem;
 		display: flex;
@@ -65,6 +67,7 @@
 		flex-direction: column;
 		gap: 1rem;
 		padding: 1rem 2rem;
+		pointer-events: all;
 		input {
 			height: 2rem;
 		}
@@ -107,8 +110,8 @@
 	}
 
 	:global(.pulsars) {
-		z-index: -1;
 		position: absolute;
 		inset: 1rem;
+		pointer-events: all;
 	}
 </style>
