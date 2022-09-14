@@ -52,12 +52,13 @@
 
 		build(): void {
 			this.clear();
-			this.downloadData("https://www.piskiewicz.org/api/pulsars/51").then(() =>
-				this.getRange().then(() => {
-					if (!this.pulsars?.length) this.fakeData();
-					this.draw();
+			this.downloadData("https://www.piskiewicz.org/api/pulsars/53")
+				.then(() => this.getRange())
+				.catch(() => {
+					console.log("Couldn't connect to server. Displaying fake pulsar data.");
+					this.fakeData();
 				})
-			);
+				.then(() => this.draw());
 		}
 
 		interval(): void {
@@ -168,6 +169,10 @@
 <style lang="scss">
 	@import "../_vars";
 	:global {
+		svg {
+			z-index: -1;
+		}
+
 		text {
 			font-family: "IBM Plex Mono", monospace;
 			font-size: 0.5rem;
@@ -182,7 +187,6 @@
 			stroke: #000;
 			stroke-width: 1;
 			pointer-events: all;
-			transition: stroke-width 0.1s ease;
 		}
 
 		circle:hover + text {

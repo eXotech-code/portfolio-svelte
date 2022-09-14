@@ -24,6 +24,11 @@ export interface Project {
     banner: Array<string>;
 }
 
+export interface Notification {
+    message: string;
+    bad: boolean;
+}
+
 export type Point = [number, number];
 
 export type Range = [number, number, number, number];

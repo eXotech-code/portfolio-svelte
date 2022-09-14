@@ -2,10 +2,11 @@
 	import Post from "./Post.svelte";
 	import arrowRight from "$lib/icons/arrow-right.svg";
 	import blog from "$lib/blog.json";
-	const posts = blog.posts;
+	import type { BlogPost } from "$lib/types";
+	const posts = <BlogPost[]>blog.posts;
 </script>
 
-<section class="blog-showcase">
+<section id="blog-showcase" class="blog-showcase">
 	<h2 class="tagline-blog">Care for a short coffee break?</h2>
 	<div class="layout-big">
 		<div class="blogposts">

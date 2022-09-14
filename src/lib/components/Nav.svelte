@@ -1,11 +1,17 @@
 <script lang="ts">
-	import menuIcon from "$lib/icons/menu.svg";
+	import MenuButton from "./MenuButton.svelte";
+	import Menu from "$lib/components/Menu.svelte";
+
+	let menuOpen = false;
 </script>
 
 <div class="nav">
-	<h3>PISKIEWICZ</h3>
-	<img alt="menu button" src={menuIcon} />
+	<h3 class="logo">PISKIEWICZ</h3>
+	<MenuButton bind:menuOpen />
 </div>
+{#if menuOpen}
+	<Menu selectedLink={"#home"} />
+{/if}
 
 <style lang="scss">
 	@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:wght@500;600;900&family=Zen+Dots&display=swap");
@@ -14,16 +20,5 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 1rem;
-	}
-
-	h3 {
-		font-family: "Zen Dots", cursive;
-		font-size: 1rem;
-		letter-spacing: 0.25rem;
-	}
-
-	img {
-		width: 1rem;
-		height: 1rem;
 	}
 </style>

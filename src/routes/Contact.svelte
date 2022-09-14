@@ -1,25 +1,70 @@
 <script lang="ts">
 	import send from "$lib/icons/send.svg";
 	import Pulsars from "$lib/components/Pulsars.svelte";
+	import type { Notification } from "$lib/types";
+
+	export let notification: Notification = { message: "", bad: false };
+
+	let form = {
+		name: "",
+		email: "",
+		message: ""
+	};
+
+	const validateEmail = (email: string) => {
+		return email.match(
+			/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		);
+	};
+
+	async function sendMessage(url: string): Promise<void> {
+		const payload = new URLSearchParams(form);
+		await fetch(url + "message", {
+			method: "POST",
+			body: payload,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Origin": "*",
+				"Access-COntrol-Allow-Headers": "*"
+			}
+		})
+			.then(() => {
+				notification = { message: "Message has been sent!", bad: false };
+			})
+			.catch(() => {
+				notification = { message: "Couldn't send the message.", bad: true };
+			});
+	}
+
+	const submit = (): void => {
+		if (validateEmail(form.email)) {
+			sendMessage("https://www.piskiewicz.org/api/");
+			form.name = "";
+			form.email = "";
+			form.message = "";
+		}
+	};
 </script>
 
-<section class="contact">
+<section id="contact" class="contact">
 	<div class="form-holder">
 		<h2>You interested?</h2>
 		<p>
 			You want it, I want it. We both know what we want. What is left for you is to just fill out
 			this form.
 		</p>
-		<form action="/message">
-			{#each ["name", "email"] as l}
-				<div class="input-container">
-					<label for={l}><p>Your {l}</p></label>
-					<input name={l} required />
-				</div>
-			{/each}
+		<form on:submit|preventDefault={submit}>
+			<div class="input-container">
+				<label for="name"><p>Your name</p></label>
+				<input bind:value={form.name} name="name" required />
+			</div>
+			<div class="input-container">
+				<label for="email"><p>Your email</p></label>
+				<input bind:value={form.email} name="email" required />
+			</div>
 			<div class="input-container">
 				<label for="message"><p>Your message</p></label>
-				<textarea name="message" required />
+				<textarea bind:value={form.message} name="message" required />
 			</div>
 			<button>
 				<p>To the ether!</p>

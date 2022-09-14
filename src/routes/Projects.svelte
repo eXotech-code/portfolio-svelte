@@ -6,7 +6,7 @@
 	const projects: Project[] = projectArr.projects;
 </script>
 
-<section class="projects">
+<section id="projects" class="projects">
 	<div class="stories">
 		<h2>Blasts from my past</h2>
 		<p>

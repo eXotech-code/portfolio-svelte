@@ -1,12 +1,81 @@
 <script lang="ts">
 	import arrowRight from "$lib/icons/arrow-right.svg";
 	import Lines from "$lib/components/Lines.svelte";
+	import NotificationBox from "$lib/components/NotificationBox.svelte";
 	import BlogShowcase from "./BlogShowcase.svelte";
 	import Projects from "./Projects.svelte";
 	import Contact from "./Contact.svelte";
+	import MenuButton from "$lib/components/MenuButton.svelte";
+	import Menu from "$lib/components/Menu.svelte";
+	import { onMount } from "svelte";
+	import { slide } from "svelte/transition";
+	import type { Notification } from "$lib/types";
+
+	let y = 0;
+	let showMenu = false;
+	let menuOpen = false;
+	let mounted = false;
+	let sections = [
+		{ name: "home", pos: 0 },
+		{ name: "blog-showcase", pos: 0 },
+		{ name: "projects", pos: 0 },
+		{ name: "contact", pos: 0 },
+		{ name: "footer", pos: 0 }
+	];
+
+	// Fills positions of section elements in the sections list/
+	function fillPositions() {
+		let currentElem: HTMLElement | null;
+
+		sections.forEach((s) => {
+			currentElem = document.querySelector(`#${s.name}`);
+			if (currentElem) {
+				s.pos = currentElem.offsetTop;
+			}
+		});
+	}
+
+	// Gets closest element to current scroll position.
+	function getClosest(scrollPos: number) {
+		let closest = sections[0];
+		let found = false;
+
+		for (let i = 0; i < sections.length - 1; i++) {
+			if (scrollPos > sections[i].pos && scrollPos < sections[i + 1].pos) {
+				closest = sections[i];
+				found = true;
+				break;
+			}
+		}
+
+		// If we haven't found the element, then it's probably the footer.
+		if (!found) closest = sections[4];
+		return closest.name;
+	}
+
+	onMount(() => {
+		fillPositions();
+		mounted = true;
+	});
+	$: {
+		if (mounted) {
+			showMenu = y > sections[0].pos && y < sections[4].pos;
+		}
+	}
+
+	let notification: Notification = { bad: false, message: "" };
+
+	$: {
+		if (notification.message !== "") {
+			window.setTimeout(() => (notification.message = ""), 4000);
+		}
+	}
+	$: currentElement = getClosest(y);
 </script>
 
-<section class="banner">
+<svelte:window bind:scrollY={y} />
+
+<section id="home" class="banner">
 	<div class="banner-text">
 		<h1>So...<br />Tell me what do you need for your new venture.</h1>
 		<h3>...and let me worry about the details.</h3>
@@ -25,7 +94,18 @@
 <hr />
 <BlogShowcase />
 <Projects />
-<Contact />
+<Contact bind:notification />
+{#if notification.message !== ""}
+	<NotificationBox {notification} />
+{/if}
+{#if showMenu}
+	<div transition:slide class={`floating-menu ${menuOpen ? "transparent-border" : ""}`}>
+		<MenuButton bind:menuOpen />
+	</div>
+	{#if menuOpen}
+		<Menu selectedLink={`#${currentElement}`} type="float" />
+	{/if}
+{/if}
 
 <style lang="scss">
 	@import "../lib/_vars";
@@ -46,7 +126,8 @@
 		h1,
 		h2,
 		h3,
-		p {
+		p,
+		a {
 			margin: 0;
 			font-family: "Open Sans", sans-serif;
 		}
@@ -54,6 +135,17 @@
 		h1,
 		h2 {
 			font-family: "PlayFair Display", serif;
+		}
+
+		a {
+			text-decoration: none;
+			color: #000;
+		}
+
+		.logo {
+			font-family: "Zen Dots", cursive;
+			font-size: 1rem;
+			letter-spacing: 0.25rem;
 		}
 	}
 
@@ -107,5 +199,30 @@
 		right: 0;
 		top: -1rem;
 		z-index: -1;
+	}
+
+	.notification-holder {
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+	}
+
+	.floating-menu {
+		position: fixed;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		bottom: 1rem;
+		right: 1rem;
+		float: right;
+		padding: 0.5rem;
+		border: 1px solid #000;
+		background: $fresh-salmon;
+		z-index: 3;
+		transition: border 0.25s ease-out;
+	}
+
+	.transparent-border {
+		border: 1px solid rgba(255, 255, 255, 0);
 	}
 </style>

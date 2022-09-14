@@ -143,7 +143,6 @@
 					}
 				});
 			}
-			console.log(count / this.points.length);
 
 			return (count * 2) / this.points.length <= BOUND_TOLERANCE;
 		}
@@ -169,7 +168,6 @@
 				this.zero();
 				exitCode = this.genPath();
 			}
-			console.log(this.points);
 		}
 	}
 
