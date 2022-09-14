@@ -10,6 +10,7 @@
 	import { onMount } from "svelte";
 	import { slide } from "svelte/transition";
 	import type { Notification } from "$lib/types";
+	import scrollIntoView from "$lib/utility/scrollIntoView";
 
 	let y = 0;
 	let showMenu = false;
@@ -80,11 +81,11 @@
 		<h1>So...<br />Tell me what do you need for your new venture.</h1>
 		<h3>...and let me worry about the details.</h3>
 		<div class="button-holder">
-			<button>
+			<a class="button" href="#contact" on:click|preventDefault={scrollIntoView}>
 				<p>Contact me</p>
 				<img alt="icon" src={arrowRight} class="icon" />
 				<div />
-			</button>
+			</a>
 		</div>
 	</div>
 	<div class="graphic">
@@ -109,45 +110,6 @@
 
 <style lang="scss">
 	@import "../lib/_vars";
-
-	:global {
-		@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:wght@500;600;900&family=Zen+Dots&display=swap");
-
-		body {
-			background: $fresh-salmon;
-			padding: 0;
-			margin: 0;
-		}
-
-		section {
-			padding: 1rem;
-		}
-
-		h1,
-		h2,
-		h3,
-		p,
-		a {
-			margin: 0;
-			font-family: "Open Sans", sans-serif;
-		}
-
-		h1,
-		h2 {
-			font-family: "PlayFair Display", serif;
-		}
-
-		a {
-			text-decoration: none;
-			color: #000;
-		}
-
-		.logo {
-			font-family: "Zen Dots", cursive;
-			font-size: 1rem;
-			letter-spacing: 0.25rem;
-		}
-	}
 
 	.banner {
 		height: 75vh;
@@ -185,6 +147,10 @@
 		justify-content: flex-end;
 		align-items: flex-end;
 		@include button-primary(auto);
+	}
+
+	.button > * {
+		pointer-events: none;
 	}
 
 	hr {

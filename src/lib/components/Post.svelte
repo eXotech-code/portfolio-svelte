@@ -27,7 +27,7 @@
 </div>
 
 <style lang="scss">
-	@import "../lib/vars";
+	@import "../vars";
 
 	.post {
 		border: 1px solid #000;

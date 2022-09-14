@@ -1,5 +1,6 @@
 <script lang="ts">
 	import scrollIntoView from "$lib/utility/scrollIntoView";
+	import Logo from "./Logo.svelte";
 </script>
 
 <section id="footer" class="footer">
@@ -48,12 +49,12 @@
 	</div>
 
 	<div class="logo-holder">
-		<h3 class="logo">PISKIEWICZ</h3>
+		<Logo variant="light" />
 	</div>
 </section>
 
 <style lang="scss">
-	@import "../lib/_vars";
+	@import "../_vars";
 
 	.footer {
 		background: #000;

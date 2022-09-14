@@ -1,16 +1,21 @@
 <script lang="ts">
 	import MenuButton from "./MenuButton.svelte";
 	import Menu from "$lib/components/Menu.svelte";
+	import Logo from "./Logo.svelte";
+	import { page } from "$app/stores";
 
 	let menuOpen = false;
+
+	$: currentUrl = $page.url.pathname.substring($page.url.pathname.lastIndexOf("/") - 1);
+	$: isBlog = currentUrl === "/blog";
 </script>
 
 <div class="nav">
-	<h3 class="logo">PISKIEWICZ</h3>
+	<Logo />
 	<MenuButton bind:menuOpen />
 </div>
 {#if menuOpen}
-	<Menu selectedLink={"#home"} />
+	<Menu {isBlog} selectedLink={currentUrl === "" ? "#home" : currentUrl} />
 {/if}
 
 <style lang="scss">

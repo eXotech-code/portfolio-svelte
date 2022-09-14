@@ -33,7 +33,7 @@
 				it on the wall to admire. You can literally do anything with it. All brought to you by the
 				MIT licensing goodness.
 			</p>
-			<button on:click={() => window.location.assign(project.link)}>
+			<button class="button" on:click={() => window.location.assign(project.link)}>
 				<p>Steal the code</p>
 				<img alt="icon" src={arrowRight} class="icon" />
 				<div />

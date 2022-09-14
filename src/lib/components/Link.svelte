@@ -1,13 +1,26 @@
 <script lang="ts">
 	import scrollIntoView from "$lib/utility/scrollIntoView";
 
+	export let type = "scroll";
 	export let selectedLink: string;
 	export let link: string;
 </script>
 
 <div>
-	<p><a href={link} on:click|preventDefault={scrollIntoView}><slot /></a></p>
-	<span class={selectedLink === link ? "selected" : ""} />
+	<p>
+		{#if type === "scroll"}
+			<a href={link} on:click|preventDefault={scrollIntoView}>
+				<slot />
+			</a>
+		{:else}
+			<a href={link}>
+				<slot />
+			</a>
+		{/if}
+	</p>
+	<span
+		class={selectedLink === link || (selectedLink === "/" && link === "#home") ? "selected" : ""}
+	/>
 </div>
 
 <style lang="scss">

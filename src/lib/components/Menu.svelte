@@ -2,22 +2,28 @@
 	import { slide } from "svelte/transition";
 	import Link from "$lib/components/Link.svelte";
 
+	export let isBlog = false;
 	export let type = "normal";
 	export let selectedLink: string;
 </script>
 
 <div transition:slide class={`menu ${type}`}>
-	<h3>On this page</h3>
-	<div class="links">
-		<Link {selectedLink} link="#home">Home</Link>
-		<Link {selectedLink} link="#blog-showcase">Blog showcase</Link>
-		<Link {selectedLink} link="#projects">Projects</Link>
-		<Link {selectedLink} link="#contact">Contact</Link>
-		<Link {selectedLink} link="#footer">Footer</Link>
-	</div>
+	{#if !isBlog}
+		<h3>On this page</h3>
+		<div class="links">
+			<Link {selectedLink} link="#home">Home</Link>
+			<Link {selectedLink} link="#blog-showcase">Blog showcase</Link>
+			<Link {selectedLink} link="#projects">Projects</Link>
+			<Link {selectedLink} link="#contact">Contact</Link>
+			<Link {selectedLink} link="#footer">Footer</Link>
+		</div>
+	{/if}
 	<h3>Global links</h3>
 	<div class="links">
-		<Link {selectedLink} link="/blog">Blog</Link>
+		{#if isBlog}
+			<Link type="standard" {selectedLink} link="/">Home</Link>
+		{/if}
+		<Link type="standard" {selectedLink} link="/blog">Blog</Link>
 	</div>
 </div>
 

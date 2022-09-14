@@ -66,7 +66,7 @@
 				<label for="message"><p>Your message</p></label>
 				<textarea bind:value={form.message} name="message" required />
 			</div>
-			<button>
+			<button class="button">
 				<p>To the ether!</p>
 				<img src={send} alt="send" class="icon" />
 				<div />

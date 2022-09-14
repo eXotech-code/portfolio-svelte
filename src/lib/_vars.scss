@@ -1,7 +1,7 @@
 $fresh-salmon: #FFEFDC;
 
 @mixin button-primary($width) {
-    button {
+    .button {
         box-sizing: border-box;
         display: flex;
         align-items: center;

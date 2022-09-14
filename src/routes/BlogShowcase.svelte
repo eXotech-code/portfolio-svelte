@@ -1,31 +1,19 @@
 <script lang="ts">
-	import Post from "./Post.svelte";
 	import arrowRight from "$lib/icons/arrow-right.svg";
-	import blog from "$lib/blog.json";
-	import type { BlogPost } from "$lib/types";
-	const posts = <BlogPost[]>blog.posts;
+	import BlogLayout from "$lib/components/BlogLayout.svelte";
 </script>
 
 <section id="blog-showcase" class="blog-showcase">
-	<h2 class="tagline-blog">Care for a short coffee break?</h2>
+	<h2>Care for a short coffee break?</h2>
 	<div class="layout-big">
-		<div class="blogposts">
-			{#each posts.slice(0, 2) as post}
-				<Post {post} />
-			{/each}
-			<div class="layout-small">
-				{#each posts.slice(2, 4) as post}
-					<Post {post} />
-				{/each}
-			</div>
-		</div>
+		<BlogLayout />
 		<div class="button-holder">
 			<h1>Still thirsty?</h1>
-			<button>
+			<a class="button" href="/blog">
 				<p>Check out my blog</p>
 				<img alt="icon" src={arrowRight} class="icon" />
 				<div />
-			</button>
+			</a>
 		</div>
 	</div>
 </section>
@@ -49,19 +37,6 @@
 	.layout-big {
 		display: grid;
 		grid-template-columns: 3fr 1fr;
-		gap: 1rem;
-	}
-
-	.blogposts {
-		display: grid;
-		padding: 1rem;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1rem;
-	}
-
-	.layout-small {
-		display: flex;
-		flex-direction: column;
 		gap: 1rem;
 	}
 
