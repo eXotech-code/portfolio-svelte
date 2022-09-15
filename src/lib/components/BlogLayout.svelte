@@ -3,15 +3,19 @@
 	import blog from "$lib/blog.json";
 	import type { BlogPost } from "$lib/types";
 
+	export let type = "small";
+
 	const posts = <BlogPost[]>blog.posts;
+	const layoutBig = type === "small" ? posts.slice(0, 2) : posts.slice(0, 4);
+	const layoutSmall = posts.slice(-2);
 </script>
 
 <div class="blogposts">
-	{#each posts.slice(0, 2) as post}
+	{#each layoutBig as post}
 		<Post {post} />
 	{/each}
 	<div class="layout-small">
-		{#each posts.slice(2, 4) as post}
+		{#each layoutSmall as post}
 			<Post {post} />
 		{/each}
 	</div>

@@ -18,13 +18,13 @@
 					goto(navigation.to.url);
 					navigated = false;
 				}
-				window.setTimeout(() => (animationOut = false), 2000);
-			}, 2000);
+				window.setTimeout(() => (animationOut = false), 1000);
+			}, 1000);
 		}
 	});
 
 	onMount(() => {
-		window.setTimeout(() => (animationOut = false), 2000);
+		window.setTimeout(() => (animationOut = false), 1000);
 	});
 </script>
 

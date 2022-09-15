@@ -45,11 +45,11 @@
 
 	path.in {
 		stroke-dashoffset: 60000;
-		animation: dash-in 2s ease-out;
+		animation: dash-in 1s ease-out;
 	}
 
 	path.out {
 		stroke-dashoffset: 30000;
-		animation: dash-out 2s ease-out;
+		animation: dash-out 1s ease-out;
 	}
 </style>
