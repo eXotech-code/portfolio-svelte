@@ -6,16 +6,19 @@
 	import { onMount } from "svelte";
 
 	let navigated = false;
-	let animationOut = true;
+	let animationOut = false;
 
 	beforeNavigate(async (navigation) => {
-		if (!navigated) {
+		if (!navigated && navigation.type !== "unload") {
 			navigated = true;
 			navigation.cancel();
 			window.setTimeout(() => {
 				animationOut = true;
-				goto(navigation.to.url);
-				navigated = false;
+				if (navigation.to) {
+					goto(navigation.to.url);
+					navigated = false;
+				}
+				window.setTimeout(() => (animationOut = false), 2000);
 			}, 2000);
 		}
 	});

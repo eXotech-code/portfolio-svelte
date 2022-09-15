@@ -23,16 +23,16 @@
 			stroke-dashoffset: 30000;
 		}
 		to {
-			stroke-dashoffset: 0;
+			stroke-dashoffset: 60000;
 		}
 	}
 
 	@keyframes dash-out {
 		from {
-			stroke-dashoffset: 0;
+			stroke-dashoffset: 60000;
 		}
 		to {
-			stroke-dashoffset: 30000;
+			stroke-dashoffset: 90000;
 		}
 	}
 
@@ -44,7 +44,7 @@
 	}
 
 	path.in {
-		stroke-dashoffset: 0;
+		stroke-dashoffset: 60000;
 		animation: dash-in 2s ease-out;
 	}
 
