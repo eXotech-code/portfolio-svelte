@@ -9,8 +9,10 @@
 	import Menu from "$lib/components/Menu.svelte";
 	import { onMount } from "svelte";
 	import { slide } from "svelte/transition";
-	import type { Notification } from "$lib/types";
+	import type { BlogPost, Notification } from "$lib/types";
 	import scrollIntoView from "$lib/utility/scrollIntoView";
+
+	export let data: BlogPost[];
 
 	let y = 0;
 	let showMenu = false;
@@ -93,7 +95,7 @@
 	</div>
 </section>
 <hr />
-<BlogShowcase />
+<BlogShowcase {data} />
 <Projects />
 <Contact bind:notification />
 {#if notification.message !== ""}

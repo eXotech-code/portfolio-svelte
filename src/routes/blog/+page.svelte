@@ -1,6 +1,9 @@
 <script lang="ts">
 	import BlogLayout from "$lib/components/BlogLayout.svelte";
 	import Lines from "$lib/components/Lines.svelte";
+	import type { BlogPost } from "$lib/types";
+
+	export let data: BlogPost[];
 </script>
 
 <section id="banner" class="banner">
@@ -15,7 +18,7 @@
 <hr />
 <section id="blog" class="blog">
 	<h2>My latest adventures</h2>
-	<BlogLayout />
+	<BlogLayout {data} />
 </section>
 
 <style lang="scss">

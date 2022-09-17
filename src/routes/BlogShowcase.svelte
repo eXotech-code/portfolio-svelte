@@ -1,12 +1,15 @@
 <script lang="ts">
 	import arrowRight from "$lib/icons/arrow-right.svg";
 	import BlogLayout from "$lib/components/BlogLayout.svelte";
+	import type { BlogPost } from "$lib/types";
+
+	export let data: BlogPost[];
 </script>
 
 <section id="blog-showcase" class="blog-showcase">
 	<h2>Care for a short coffee break?</h2>
 	<div class="layout-big">
-		<BlogLayout />
+		<BlogLayout {data} />
 		<div class="button-holder">
 			<h1>Still thirsty?</h1>
 			<a class="button" href="/blog">

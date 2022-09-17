@@ -1,18 +1,20 @@
 export type Color = [number, number, number];
 
 export interface Tag {
-    text: string;
-    borderColor: Color;
+    name: string;
+    colour: Color;
+    bgcolour: Color;
 }
 
 export interface BlogPost {
     id: number;
-    image: boolean;
+    image: number; // 0 or 1
     title: string;
     date: string;
     description: string;
     tags: Tag[];
-    alt?: string;
+    author?: string;
+    content?: string;
 }
 
 export interface Project {

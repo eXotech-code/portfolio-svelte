@@ -5,9 +5,19 @@
 	import { page } from "$app/stores";
 
 	let menuOpen = false;
+	let currentUrl = "/";
 
-	$: currentUrl = $page.url.pathname.substring($page.url.pathname.lastIndexOf("/") - 1);
-	$: isBlog = currentUrl === "/blog";
+	$: {
+		currentUrl = $page.url.pathname.substring($page.url.pathname.indexOf("/") - 1);
+		currentUrl =
+			currentUrl !== "/"
+				? $page.url.pathname.substring($page.url.pathname.indexOf("/"), 5)
+				: currentUrl;
+	}
+	$: {
+		console.log(currentUrl);
+	}
+	$: isHome = currentUrl === "/";
 </script>
 
 <div class="nav">
@@ -15,7 +25,7 @@
 	<MenuButton bind:menuOpen />
 </div>
 {#if menuOpen}
-	<Menu {isBlog} selectedLink={currentUrl === "" ? "#home" : currentUrl} />
+	<Menu {isHome} selectedLink={currentUrl === "" ? "#home" : currentUrl} />
 {/if}
 
 <style lang="scss">

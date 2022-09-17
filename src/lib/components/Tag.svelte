@@ -4,7 +4,7 @@
 	export let borderColor: Color;
 </script>
 
-<div style={`--color: rgb(${borderColor.join(", ")})`} class="tag">
+<div style={`--color: #${borderColor}`} class="tag">
 	<p><slot /></p>
 </div>
 

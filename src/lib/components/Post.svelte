@@ -8,7 +8,7 @@
 
 <div class="post" id={post.id.toString()}>
 	{#if post.image}
-		<img alt={post.alt} src={`blog/${post.id}.webp`} />
+		<img alt={post.title} src={`blog/${post.id}.webp`} />
 	{/if}
 	<div class="text">
 		<h3>{post.title}</h3>
@@ -16,10 +16,10 @@
 		<p class="description">{post.description}</p>
 		<div class="tags">
 			{#each post.tags as tag}
-				<Tag borderColor={tag.borderColor}>{tag.text}</Tag>
+				<Tag borderColor={tag.colour}>{tag.name}</Tag>
 			{/each}
 		</div>
-		<button>
+		<button on:click={() => (window.location.href = `/blog/posts/${post.id}`)}>
 			<p>Read this</p>
 			<img alt="icon" src={arrowRight} class="icon" />
 		</button>

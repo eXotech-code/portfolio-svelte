@@ -56,9 +56,11 @@
 				.then(() => this.getRange())
 				.catch(() => {
 					console.log("Couldn't connect to server. Displaying fake pulsar data.");
-					this.fakeData();
 				})
-				.then(() => this.draw());
+				.then(() => {
+					if (!this.pulsars?.length) this.fakeData();
+					this.draw();
+				});
 		}
 
 		interval(): void {

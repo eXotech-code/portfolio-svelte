@@ -1,13 +1,27 @@
 <script lang="ts">
 	import Post from "./Post.svelte";
-	import blog from "$lib/blog.json";
 	import type { BlogPost } from "$lib/types";
 
 	export let type = "small";
+	export let data: BlogPost[];
 
-	const posts = <BlogPost[]>blog.posts;
-	const layoutBig = type === "small" ? posts.slice(0, 2) : posts.slice(0, 4);
-	const layoutSmall = posts.slice(-2);
+	let longPosts: BlogPost[] = [];
+	let shortPosts: BlogPost[] = [];
+	$: {
+		if (Object.keys(data).length) {
+			Object.values(data).forEach((p) => {
+				console.log(p);
+				if (p.image) {
+					longPosts = [...longPosts, p];
+				} else {
+					shortPosts = [...shortPosts, p];
+				}
+			});
+		}
+	}
+
+	$: layoutBig = type === "small" ? longPosts.slice(0, 2) : longPosts.slice(0, 4);
+	$: layoutSmall = shortPosts.slice(-2);
 </script>
 
 <div class="blogposts">

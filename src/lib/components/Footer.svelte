@@ -4,7 +4,7 @@
 	import { page } from "$app/stores";
 
 	$: currentUrl = $page.url.pathname.substring($page.url.pathname.lastIndexOf("/") - 1);
-	$: isBlog = currentUrl === "/blog";
+	$: isHome = currentUrl === "/";
 </script>
 
 <section id="footer" class="footer">
@@ -16,7 +16,7 @@
 	<div class="rightflow">
 		<div class="footer-section">
 			<h3 class="section-name">sitemap</h3>
-			{#if !isBlog}
+			{#if isHome}
 				<p class="subsection-name">This page</p>
 				<p><a on:click={scrollIntoView} href="#home">home</a></p>
 				<p><a on:click={scrollIntoView} href="#blog-showcase">blog showcase</a></p>
@@ -24,7 +24,7 @@
 				<p><a on:click={scrollIntoView} href="#contact">contact</a></p>
 			{/if}
 			<p class="subsection-name">Global</p>
-			{#if isBlog}
+			{#if !isHome}
 				<p><a on:click={scrollIntoView} href="/">home</a></p>
 			{/if}
 			<p><a on:click={scrollIntoView} href="/blog">blog</a></p>

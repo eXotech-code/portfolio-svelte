@@ -2,13 +2,13 @@
 	import { slide } from "svelte/transition";
 	import Link from "$lib/components/Link.svelte";
 
-	export let isBlog = false;
+	export let isHome = true;
 	export let type = "normal";
 	export let selectedLink: string;
 </script>
 
 <div transition:slide class={`menu ${type}`}>
-	{#if !isBlog}
+	{#if isHome}
 		<h3>On this page</h3>
 		<div class="links">
 			<Link {selectedLink} link="#home">Home</Link>
@@ -20,7 +20,7 @@
 	{/if}
 	<h3>Global links</h3>
 	<div class="links">
-		{#if isBlog}
+		{#if !isHome}
 			<Link type="standard" {selectedLink} link="/">Home</Link>
 		{/if}
 		<Link type="standard" {selectedLink} link="/blog">Blog</Link>
