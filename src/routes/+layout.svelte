@@ -5,6 +5,7 @@
 	import { beforeNavigate, goto } from "$app/navigation";
 	import { onMount } from "svelte";
 
+	const TIMEOUT = 1000;
 	let navigated = false;
 	let animationOut = false;
 
@@ -18,13 +19,13 @@
 					goto(navigation.to.url);
 					navigated = false;
 				}
-				window.setTimeout(() => (animationOut = false), 1000);
-			}, 1000);
+				window.setTimeout(() => (animationOut = false), TIMEOUT);
+			}, TIMEOUT);
 		}
 	});
 
 	onMount(() => {
-		window.setTimeout(() => (animationOut = false), 1000);
+		window.setTimeout(() => (animationOut = false), TIMEOUT);
 	});
 </script>
 

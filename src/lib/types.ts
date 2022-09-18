@@ -1,4 +1,4 @@
-export type Color = [number, number, number];
+export type Color = string;
 
 export interface Tag {
     name: string;
@@ -15,6 +15,11 @@ export interface BlogPost {
     tags: Tag[];
     author?: string;
     content?: string;
+}
+
+export interface TagSearchResults {
+    tag: string;
+    blogPosts: BlogPost[];
 }
 
 export interface Project {

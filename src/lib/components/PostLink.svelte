@@ -12,7 +12,7 @@
 	div {
 		display: inline-block;
 		width: fit-content;
-		height: 1.5rem;
+		height: 1.45rem;
 
 		position: relative;
 		&:hover {

@@ -67,12 +67,6 @@
 		font-weight: 900;
 	}
 
-	h2 {
-		margin: 1rem;
-		font-size: 2rem;
-		font-weight: 500;
-	}
-
 	h3 {
 		font-size: 1.5rem;
 		font-weight: 300;
@@ -108,7 +102,7 @@
 	}
 
 	.post {
-		padding: 1rem 10rem;
+		padding: 2rem 10rem;
 	}
 
 	:global {
@@ -129,10 +123,18 @@
 			font-size: 2.25rem;
 			font-weight: 400;
 		}
+		.post > p > code {
+			font-family: "IBM Plex Mono";
+			font-weight: 400;
+		}
 		.post > .code {
 			font-family: "IBM Plex Mono";
 			font-weight: 400;
 			font-size: 1.25rem;
+		}
+		.post > ul > li > img {
+			object-fit: contain;
+			max-width: 100%;
 		}
 	}
 </style>

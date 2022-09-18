@@ -1,16 +1,13 @@
 <script lang="ts">
-	import arrowRight from "$lib/icons/arrow-right.svg";
-	import Tag from "$lib/components/Tag.svelte";
 	import type { BlogPost } from "$lib/types";
+	import Tag from "$lib/components/Tag.svelte";
+	import arrowRight from "$lib/icons/arrow-right.svg";
 
 	export let post: BlogPost;
 </script>
 
-<div class="post" id={post.id.toString()}>
-	{#if post.image}
-		<img alt={post.title} src={`blog/${post.id}.webp`} />
-	{/if}
-	<div class="text">
+<div class="post">
+	<div class="content">
 		<h3>{post.title}</h3>
 		<p class="date">{post.date}</p>
 		<p class="description">{post.description}</p>
@@ -19,6 +16,8 @@
 				<Tag borderColor={tag.colour}>{tag.name}</Tag>
 			{/each}
 		</div>
+	</div>
+	<div class="button-holder">
 		<a class="button" href={`/blog/posts/${post.id}`}>
 			<p>Read this</p>
 			<img alt="icon" src={arrowRight} class="icon" />
@@ -32,19 +31,14 @@
 	.post {
 		border: 1px solid #000;
 		display: flex;
-		flex-direction: column;
-	}
-
-	img {
-		@include sixteen-by-nine;
-	}
-
-	.text {
+		justify-content: space-between;
 		padding: 1rem;
+	}
+
+	.content {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		flex-grow: 1;
 	}
 
 	h3 {
@@ -64,10 +58,14 @@
 
 	.tags {
 		display: grid;
-		grid-template-columns: repeat(3, max-content);
-		grid-template-rows: repeat(2, 1rem);
+		grid-template-columns: repeat(6, max-content);
 		gap: 0.5rem;
 		flex-grow: 1;
+	}
+
+	.button-holder {
+		display: flex;
+		align-items: flex-end;
 	}
 
 	.button {

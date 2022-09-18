@@ -1,49 +1,50 @@
 <script lang="ts">
 	import copyIcon from "$lib/icons/copy.svg";
 	import doneIcon from "$lib/icons/done.svg";
+	import type { SvelteComponent } from "svelte";
+	import { Highlight } from "svelte-highlight";
+	import c from "svelte-highlight/languages/c";
+	import "$lib/ibm-carbon-theme.css";
 
 	export let lang: string;
 	export let text: string;
 
 	let copied = false;
-	let block: HTMLElement;
+	let block: SvelteComponent;
 
 	function copyCodeBlock(): void {
-		let r = document.createRange();
-		r.selectNode(block);
-		window.getSelection()?.removeAllRanges();
-		window.getSelection()?.addRange(r);
-		document.execCommand("copy");
-		window.getSelection()?.removeAllRanges();
+		navigator.clipboard.writeText(text);
 		copied = true;
 		window.setTimeout(() => (copied = false), 1000);
 	}
 </script>
 
-<div class="outer">
-	<div class="code">
-		<pre class={lang}><code bind:this={block}>{text}</code></pre>
-	</div>
-	<div class="button-holder">
-		<img on:click={copyCodeBlock} src={copied ? doneIcon : copyIcon} alt="copy button" />
+<div class="center">
+	<div class="outer">
+		<div>
+			<Highlight bind:this={block} code={text} language={c} />
+		</div>
+		<div class="button-holder">
+			<img on:click={copyCodeBlock} src={copied ? doneIcon : copyIcon} alt="copy button" />
+		</div>
 	</div>
 </div>
 
 <style lang="scss">
 	@import "../vars";
 
+	.center {
+		display: flex;
+		justify-content: center;
+	}
+
 	.outer {
 		margin: 1rem 0;
 		background: #161616;
 		display: grid;
 		grid-template-columns: 1fr 3rem;
-		justify-content: center;
 		padding: 1rem;
-	}
-
-	pre {
-		color: $fresh-salmon;
-		white-space: pre-wrap;
+		width: fit-content;
 	}
 
 	.button-holder {
@@ -55,5 +56,13 @@
 		width: 1rem;
 		height: 1rem;
 		cursor: pointer;
+	}
+
+	:global {
+		pre > code {
+			font-family: "IBM Plex Mono";
+			font-size: 0.65rem;
+			white-space: pre-wrap;
+		}
 	}
 </style>

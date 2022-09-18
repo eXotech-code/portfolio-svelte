@@ -1,0 +1,120 @@
+/*!
+  Theme: IBM Carbon Color Theme
+  Author: Jakub Piskiewicz (https://github.com/eXotech-code)
+  License: Apache License 2.0
+  Maintainer: Jakub Piskiewicz
+  Version: 2022.09.17
+*/
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+code.hljs {
+    padding: 3px 5px;
+}
+
+.hljs {
+    color: #fff;
+    background: #161616;
+}
+
+.hljs ::selection,
+.hljs::selection {
+    background-color: #aafb54;
+    color: #fff;
+}
+
+.hljs-comment {
+    color: #6F6F6F;
+}
+
+.hljs-tag {
+    color: #78A9FF;
+}
+
+.hljs-punctuation {
+    color: #FAD849;
+}
+
+.hljs-operator,
+.hljs-subst {
+    color: #78a9ff;
+}
+
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+    color: #fff;
+}
+
+.hljs-attr,
+.hljs-link,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+    color: #78a9ff;
+}
+
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-literal,
+.hljs-title.class_ {
+    color: #be95ff;
+}
+
+.hljs-strong {
+    font-weight: 700;
+    color: #9EF0F0;
+}
+
+.hljs-addition {
+    background-color: #93b778;
+}
+
+.hljs-string {
+    color: #FF7EB6;
+}
+
+.hljs-regexp {
+    color: #646695;
+}
+
+.hljs-built_in,
+.hljs-doctag,
+.hljs-keyword.hljs-atrule {
+    color: #9EF0F0;
+}
+
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-title.function_,
+.ruby .hljs-property {
+    color: #9EF0F0;
+}
+
+.hljs-section {
+    color: #78a9ff;
+}
+
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type,
+.hljs-meta {
+    color: #BE95FF;
+}
+
+.hljs-emphasis {
+    color: #9EF0F0;
+    font-style: italic;
+}
+
+.hljs-variable-language {
+    color: #FF8389;
+    font-style: italic;
+}
