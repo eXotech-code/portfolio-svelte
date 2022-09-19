@@ -25,11 +25,13 @@
 	<h1 class="tag" style={`--color: #${tagColour}`}>{data.tag}</h1>
 </section>
 <hr />
-<section id="results" class="results">
-	{#each data.blogPosts as post}
-		<TagSearchResult {post} />
-	{/each}
-</section>
+{#if data.blogPosts.length}
+	<section id="results" class="results">
+		{#each data.blogPosts as post}
+			<TagSearchResult {post} />
+		{/each}
+	</section>
+{/if}
 
 <style lang="scss">
 	.banner {

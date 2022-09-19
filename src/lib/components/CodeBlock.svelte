@@ -1,33 +1,58 @@
 <script lang="ts">
 	import copyIcon from "$lib/icons/copy.svg";
 	import doneIcon from "$lib/icons/done.svg";
-	import type { SvelteComponent } from "svelte";
 	import { Highlight } from "svelte-highlight";
-	import c from "svelte-highlight/languages/c";
+	import { c, cpp, javascript, python, typescript, shell } from "svelte-highlight/languages";
 	import "$lib/ibm-carbon-theme.css";
+	import type { Language } from "svelte-highlight/Highlight.svelte";
 
 	export let lang: string;
 	export let text: string;
 
 	let copied = false;
-	let block: SvelteComponent;
+
+	function getLang(): Language | undefined {
+		switch (lang) {
+			case "c":
+				return c;
+			case "cpp":
+				return cpp;
+			case "javascript":
+				return javascript;
+			case "python":
+				return python;
+			case "typescript":
+				return typescript;
+			case "sh":
+				return shell;
+		}
+		return undefined;
+	}
 
 	function copyCodeBlock(): void {
 		navigator.clipboard.writeText(text);
 		copied = true;
 		window.setTimeout(() => (copied = false), 1000);
 	}
+
+	$: language = getLang();
 </script>
 
 <div class="center">
-	<div class="outer">
-		<div>
-			<Highlight bind:this={block} code={text} language={c} />
+	{#if language}
+		<div class="outer">
+			<div>
+				<Highlight code={text} {language} />
+			</div>
+			<div class="button-holder">
+				<img on:click={copyCodeBlock} src={copied ? doneIcon : copyIcon} alt="copy button" />
+			</div>
 		</div>
-		<div class="button-holder">
-			<img on:click={copyCodeBlock} src={copied ? doneIcon : copyIcon} alt="copy button" />
+	{:else}
+		<div class="error">
+			<p>ERROR: Highlighting for the specified language "{lang}" is unavailable.</p>
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -56,6 +81,10 @@
 		width: 1rem;
 		height: 1rem;
 		cursor: pointer;
+	}
+
+	.error {
+		padding: 10rem;
 	}
 
 	:global {

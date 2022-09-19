@@ -14,7 +14,7 @@
 				? $page.url.pathname.substring($page.url.pathname.indexOf("/"), 5)
 				: currentUrl;
 	}
-	$: isHome = currentUrl === "/";
+	$: isHome = currentUrl === "/" && $page.status !== 500;
 </script>
 
 <div class="nav">

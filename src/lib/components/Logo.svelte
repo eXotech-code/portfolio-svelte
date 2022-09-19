@@ -5,7 +5,7 @@
 	export let variant = "dark";
 
 	$: currentUrl = $page.url.pathname.substring($page.url.pathname.lastIndexOf("/") - 1);
-	$: isHome = currentUrl === "/";
+	$: isHome = currentUrl === "/" && $page.status !== 500;
 </script>
 
 {#if isHome}
