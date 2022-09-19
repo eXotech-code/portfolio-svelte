@@ -5,11 +5,11 @@
 	export let name: string;
 </script>
 
-<div style={`--color: #${borderColor}`} class="tag">
-	<a href={`/blog/search/${name}`}>
+<a href={`/blog/search/${name}`}>
+	<div style={`--color: #${borderColor}`} class="tag">
 		<p>{name}</p>
-	</a>
-</div>
+	</div>
+</a>
 
 <style lang="scss">
 	@import "../vars";

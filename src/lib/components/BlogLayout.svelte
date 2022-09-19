@@ -10,7 +10,6 @@
 	$: {
 		if (Object.keys(data).length) {
 			Object.values(data).forEach((p) => {
-				console.log(p);
 				if (p.image) {
 					longPosts = [...longPosts, p];
 				} else {

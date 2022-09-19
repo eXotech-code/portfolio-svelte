@@ -14,9 +14,6 @@
 				? $page.url.pathname.substring($page.url.pathname.indexOf("/"), 5)
 				: currentUrl;
 	}
-	$: {
-		console.log(currentUrl);
-	}
 	$: isHome = currentUrl === "/";
 </script>
 
