@@ -9,6 +9,8 @@
 </script>
 
 <svelte:head>
+	<meta property="og:title" content={`${data.title} - PISKIEWICZ`} />
+	<meta property="og:image" content={`https://www.piskiewicz.org/blog/${data.id}.webp`} />
 	<title>{data.title} - PISKIEWICZ</title>
 </svelte:head>
 

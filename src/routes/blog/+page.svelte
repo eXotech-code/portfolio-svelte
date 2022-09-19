@@ -7,6 +7,7 @@
 </script>
 
 <svelte:head>
+	<meta property="og:title" content="Blog - PISKIEWICZ" />
 	<title>Blog - PISKIEWICZ</title>
 </svelte:head>
 

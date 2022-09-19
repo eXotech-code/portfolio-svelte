@@ -17,6 +17,7 @@
 </script>
 
 <svelte:head>
+	<meta property="og:title" content={`Tag: ${data.tag} - PISKIEWICZ`} />
 	<title>Tag: {data.tag} - PISKIEWICZ</title>
 </svelte:head>
 

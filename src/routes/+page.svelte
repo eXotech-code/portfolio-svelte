@@ -79,6 +79,7 @@
 <svelte:window bind:scrollY={y} />
 
 <svelte:head>
+	<meta property="og:title" content="Home - PISKIEWICZ" />
 	<title>Home - PISKIEWICZ</title>
 </svelte:head>
 
