@@ -10,9 +10,10 @@
 
 <style lang="scss">
 	div {
-		display: inline-block;
+		display: inline-flex;
 		width: fit-content;
 		height: 1.45rem;
+		flex-direction: column;
 
 		position: relative;
 		&:hover {
