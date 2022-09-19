@@ -8,6 +8,10 @@
 	export let data: BlogPost;
 </script>
 
+<svelte:head>
+	<title>{data.title} - PISKIEWICZ</title>
+</svelte:head>
+
 <section id="banner" class="banner">
 	<div class="banner-content">
 		<div class="banner-text">
@@ -18,7 +22,7 @@
 				<p class="banner-container-name">Tags:</p>
 				<div class="tags">
 					{#each data.tags as tag}
-						<Tag borderColor={tag.colour}>{tag.name}</Tag>
+						<Tag borderColor={tag.colour} name={tag.name} />
 					{/each}
 				</div>
 			</div>

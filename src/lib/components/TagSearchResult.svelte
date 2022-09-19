@@ -13,7 +13,7 @@
 		<p class="description">{post.description}</p>
 		<div class="tags">
 			{#each post.tags as tag}
-				<Tag borderColor={tag.colour}>{tag.name}</Tag>
+				<Tag borderColor={tag.colour} name={tag.name} />
 			{/each}
 		</div>
 	</div>
@@ -66,6 +66,7 @@
 	.button-holder {
 		display: flex;
 		align-items: flex-end;
+		width: 20%;
 	}
 
 	.button {

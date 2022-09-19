@@ -2,10 +2,13 @@
 	import type { Color } from "$lib/types";
 
 	export let borderColor: Color;
+	export let name: string;
 </script>
 
 <div style={`--color: #${borderColor}`} class="tag">
-	<p><slot /></p>
+	<a href={`/blog/search/${name}`}>
+		<p>{name}</p>
+	</a>
 </div>
 
 <style lang="scss">

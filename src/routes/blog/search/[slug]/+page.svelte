@@ -16,6 +16,10 @@
 	let tagColour = findTagColour();
 </script>
 
+<svelte:head>
+	<title>Tag: {data.tag} - PISKIEWICZ</title>
+</svelte:head>
+
 <section id="banner" class="banner">
 	<h1>Search results for:</h1>
 	<h1 class="tag" style={`--color: #${tagColour}`}>{data.tag}</h1>
@@ -48,5 +52,12 @@
 	hr {
 		border-color: #000;
 		margin: 0;
+	}
+
+	.results {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem 4rem;
 	}
 </style>

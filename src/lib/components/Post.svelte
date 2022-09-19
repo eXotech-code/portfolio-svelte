@@ -16,7 +16,7 @@
 		<p class="description">{post.description}</p>
 		<div class="tags">
 			{#each post.tags as tag}
-				<Tag borderColor={tag.colour}>{tag.name}</Tag>
+				<Tag borderColor={tag.colour} name={tag.name} />
 			{/each}
 		</div>
 		<a class="button" href={`/blog/posts/${post.id}`}>

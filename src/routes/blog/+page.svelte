@@ -6,6 +6,10 @@
 	export let data: BlogPost[];
 </script>
 
+<svelte:head>
+	<title>Blog - PISKIEWICZ</title>
+</svelte:head>
+
 <section id="banner" class="banner">
 	<div class="banner-text">
 		<h1>The blog</h1>

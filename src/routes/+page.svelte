@@ -78,6 +78,10 @@
 
 <svelte:window bind:scrollY={y} />
 
+<svelte:head>
+	<title>Home - PISKIEWICZ</title>
+</svelte:head>
+
 <section id="home" class="banner">
 	<div class="banner-text">
 		<h1>So...<br />Tell me what do you need for your new venture.</h1>
