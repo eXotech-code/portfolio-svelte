@@ -2,4 +2,4 @@
 
 npm install
 npm run build
-HOST=127.0.0.1 PORT=80 node build
+HOST=0.0.0.0 PORT=80 node build
