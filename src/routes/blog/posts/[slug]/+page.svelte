@@ -6,6 +6,7 @@
 	import CodeBlock from "$lib/components/CodeBlock.svelte";
 	import { onMount } from "svelte";
 	import { contentLoaded } from "$lib/stores";
+	import MediaQuery from "$lib/components/MediaQuery.svelte";
 
 	export let data: BlogPost;
 
@@ -24,6 +25,13 @@
 	<div class="banner-content">
 		<div class="banner-text">
 			<h1>{data.title}</h1>
+			<MediaQuery query="(max-width: 576px)" let:matches>
+				{#if matches}
+					<div class="graphic">
+						<img alt={data.title} src={`../../blog/${data.id}.webp`} />
+					</div>
+				{/if}
+			</MediaQuery>
 			<p class="date">{data.date}</p>
 			<h3>{data.description}</h3>
 			<div class="banner-container">
@@ -39,9 +47,13 @@
 				<p>{data.author}</p>
 			</div>
 		</div>
-		<div class="graphic">
-			<img alt={data.title} src={`../../blog/${data.id}.webp`} />
-		</div>
+		<MediaQuery query="(min-width: 577px)" let:matches>
+			{#if matches}
+				<div class="graphic">
+					<img alt={data.title} src={`../../blog/${data.id}.webp`} />
+				</div>
+			{/if}
+		</MediaQuery>
 	</div>
 </section>
 <hr />
@@ -163,6 +175,15 @@
 			.post > ul {
 				padding-left: 1rem;
 			}
+		}
+
+		.banner-content {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+
+		.graphic {
+			padding: 1rem 0;
 		}
 	}
 </style>
