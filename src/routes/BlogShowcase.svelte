@@ -29,6 +29,8 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		background: $fresh-salmon;
+		position: relative;
+		z-index: 1;
 	}
 
 	h2 {
@@ -55,5 +57,31 @@
 
 	h1 {
 		font-size: 3.5rem;
+	}
+
+	@media (max-width: 576px) {
+		h2 {
+			margin: 1rem 0;
+		}
+
+		h1 {
+			font-size: 2.25rem;
+		}
+
+		.button-holder {
+			align-items: flex-start;
+		}
+
+		.layout-big {
+			grid-template-columns: 1fr;
+			grid-template-rows: max-content max-content;
+		}
+
+		.button-holder {
+			padding: 0;
+			.button {
+				justify-content: space-between;
+			}
+		}
 	}
 </style>

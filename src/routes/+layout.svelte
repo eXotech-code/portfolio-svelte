@@ -3,35 +3,37 @@
 	import Footer from "../lib/components/Footer.svelte";
 	import Transition from "$lib/components/Transition.svelte";
 	import { beforeNavigate, goto } from "$app/navigation";
-	import { onMount } from "svelte";
+	import { contentLoaded } from "$lib/stores";
 
 	const TIMEOUT = 1000;
 	let navigated = false;
-	let animationOut = false;
+	let animated = false;
+	let isUnload = true;
 
 	beforeNavigate(async (navigation) => {
-		if (!navigated && navigation.type !== "unload") {
+		isUnload = navigation.type === "unload";
+		if (!navigated && !isUnload) {
+			$contentLoaded = false;
 			navigated = true;
+			animated = true;
 			navigation.cancel();
 			window.setTimeout(() => {
-				animationOut = true;
 				if (navigation.to) {
 					goto(navigation.to.url);
 					navigated = false;
 				}
-				window.setTimeout(() => (animationOut = false), TIMEOUT);
 			}, TIMEOUT);
 		}
 	});
 
-	onMount(() => {
-		window.setTimeout(() => (animationOut = false), TIMEOUT);
-	});
+	$: {
+		if ($contentLoaded) animated = false;
+	}
 </script>
 
-{#if navigated}
+{#if animated}
 	<Transition />
-{:else if animationOut}
+{:else if $contentLoaded && !isUnload}
 	<Transition transitionIn={false} />
 {/if}
 <Nav />
@@ -44,7 +46,8 @@
 	:global {
 		@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:wght@500;600;900&family=Zen+Dots&display=swap");
 
-		body {
+		body,
+		html {
 			background: $fresh-salmon;
 			padding: 0;
 			margin: 0;

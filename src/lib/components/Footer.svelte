@@ -130,4 +130,20 @@
 		align-items: flex-end;
 		height: 3rem;
 	}
+
+	@media (max-width: 576px) {
+		.footer {
+			gap: 0rem;
+		}
+
+		.rightflow {
+			flex-direction: column;
+			justify-content: start;
+			gap: 2rem;
+		}
+
+		.logo-holder {
+			margin-top: 2rem;
+		}
+	}
 </style>

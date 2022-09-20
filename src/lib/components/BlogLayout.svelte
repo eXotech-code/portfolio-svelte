@@ -27,11 +27,13 @@
 	{#each layoutBig as post}
 		<Post {post} />
 	{/each}
-	<div class="layout-small">
-		{#each layoutSmall as post}
-			<Post {post} />
-		{/each}
-	</div>
+	{#if layoutSmall.length}
+		<div class="layout-small">
+			{#each layoutSmall as post}
+				<Post {post} />
+			{/each}
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -46,5 +48,13 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	@media (max-width: 576px) {
+		.blogposts {
+			grid-template-columns: 1fr;
+			grid-template-rows: repeat(3, 1fr);
+			padding: 0;
+		}
 	}
 </style>

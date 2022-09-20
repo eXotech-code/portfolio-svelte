@@ -1,9 +1,14 @@
 <script lang="ts">
 	import BlogLayout from "$lib/components/BlogLayout.svelte";
 	import Lines from "$lib/components/Lines.svelte";
+	import MediaQuery from "$lib/components/MediaQuery.svelte";
+	import { onMount } from "svelte";
+	import { contentLoaded } from "$lib/stores";
 	import type { BlogPost } from "$lib/types";
 
 	export let data: BlogPost[];
+
+	onMount(() => ($contentLoaded = true));
 </script>
 
 <svelte:head>
@@ -16,9 +21,13 @@
 		<h1>The blog</h1>
 		<h3>If I’ve done something I want to brag about, this is where you would find out about it.</h3>
 	</div>
-	<div class="graphic">
-		<Lines />
-	</div>
+	<MediaQuery query="(min-width: 577px)" let:matches>
+		{#if matches}
+			<div class="graphic">
+				<Lines />
+			</div>
+		{/if}
+	</MediaQuery>
 </section>
 <hr />
 <section id="blog" class="blog">
@@ -30,13 +39,13 @@
 	@import "../../lib/_vars";
 
 	.banner {
-		height: 50vh;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 3rem 1fr;
+		grid-template-rows: 3rem 1fr 3rem;
 		grid-template-areas:
 			". graphic"
-			"text graphic";
+			"text graphic"
+			". graphic";
 	}
 
 	.banner-text {
@@ -45,6 +54,8 @@
 		flex-direction: column;
 		gap: 1rem;
 		padding: 1rem;
+		z-index: 1;
+		background: $fresh-salmon;
 	}
 
 	h1 {
@@ -70,14 +81,34 @@
 
 	.graphic {
 		position: absolute;
-		height: 90%;
-		width: 50%;
 		right: 0;
-		top: -1rem;
-		z-index: -1;
+		top: 0;
+		height: 800px;
+		width: 50%;
 	}
 
 	.blog {
 		background: $fresh-salmon;
+		position: relative;
+	}
+
+	@media (max-width: 576px) {
+		h1 {
+			font-size: 2.25rem;
+		}
+
+		h2 {
+			margin: 1rem 0;
+		}
+
+		.banner {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+			grid-template-areas: unset;
+		}
+
+		.banner-text {
+			padding: 0;
+		}
 	}
 </style>

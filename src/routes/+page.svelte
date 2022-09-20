@@ -7,10 +7,12 @@
 	import Contact from "./Contact.svelte";
 	import MenuButton from "$lib/components/MenuButton.svelte";
 	import Menu from "$lib/components/Menu.svelte";
+	import MediaQuery from "$lib/components/MediaQuery.svelte";
 	import { onMount } from "svelte";
 	import { slide } from "svelte/transition";
 	import type { BlogPost, Notification } from "$lib/types";
 	import scrollIntoView from "$lib/utility/scrollIntoView";
+	import { contentLoaded } from "$lib/stores";
 
 	export let data: BlogPost[];
 
@@ -33,7 +35,7 @@
 		sections.forEach((s) => {
 			currentElem = document.querySelector(`#${s.name}`);
 			if (currentElem) {
-				s.pos = currentElem.offsetTop;
+				s.pos = currentElem.getBoundingClientRect().top;
 			}
 		});
 	}
@@ -59,6 +61,7 @@
 	onMount(() => {
 		fillPositions();
 		mounted = true;
+		$contentLoaded = true;
 	});
 	$: {
 		if (mounted) {
@@ -95,9 +98,13 @@
 			</a>
 		</div>
 	</div>
-	<div class="graphic">
-		<Lines />
-	</div>
+	<MediaQuery query="(min-width: 577px)" let:matches>
+		{#if matches}
+			<div class="graphic">
+				<Lines />
+			</div>
+		{/if}
+	</MediaQuery>
 </section>
 <hr />
 <BlogShowcase {data} />
@@ -119,10 +126,9 @@
 	@import "../lib/_vars";
 
 	.banner {
-		height: 75vh;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 3rem 1fr;
+		grid-template-rows: 3rem max-content;
 		grid-template-areas:
 			". graphic"
 			"text graphic";
@@ -134,6 +140,8 @@
 		flex-direction: column;
 		gap: 1rem;
 		padding: 1rem;
+		z-index: 1;
+		background: $fresh-salmon;
 	}
 
 	h1 {
@@ -148,11 +156,11 @@
 
 	.button-holder {
 		width: 100%;
-		height: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
 		align-items: flex-end;
+		margin-top: 5rem;
 		@include button-primary(auto);
 	}
 
@@ -163,15 +171,15 @@
 	hr {
 		border-color: #000;
 		margin: 0;
+		z-index: 1;
 	}
 
 	.graphic {
 		position: absolute;
-		height: 90%;
-		width: 50%;
 		right: 0;
-		top: -1rem;
-		z-index: -1;
+		top: 0;
+		height: 800px;
+		width: 50%;
 	}
 
 	.notification-holder {
@@ -197,5 +205,28 @@
 
 	.transparent-border {
 		border: 1px solid rgba(255, 255, 255, 0);
+	}
+
+	@media (max-width: 576px) {
+		h1 {
+			font-size: 2.25rem;
+		}
+
+		.banner {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+
+		.banner-text {
+			padding: 0;
+		}
+
+		.button-holder {
+			margin-top: 0;
+			.button {
+				width: 100%;
+				justify-content: space-between;
+			}
+		}
 	}
 </style>

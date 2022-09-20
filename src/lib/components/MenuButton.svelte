@@ -21,4 +21,10 @@
 			transform: scale(1.5);
 		}
 	}
+
+	@media (max-width: 576px) {
+		img:hover {
+			transform: unset;
+		}
+	}
 </style>

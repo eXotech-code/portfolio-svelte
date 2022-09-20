@@ -4,8 +4,12 @@
 	import type { BlogPost } from "$lib/types";
 	import PostLink from "$lib/components/PostLink.svelte";
 	import CodeBlock from "$lib/components/CodeBlock.svelte";
+	import { onMount } from "svelte";
+	import { contentLoaded } from "$lib/stores";
 
 	export let data: BlogPost;
+
+	onMount(() => ($contentLoaded = true));
 </script>
 
 <svelte:head>
@@ -47,10 +51,6 @@
 
 <style lang="scss">
 	@import "../../../../lib/vars";
-
-	.banner {
-		height: 60vh;
-	}
 
 	.banner-content {
 		display: grid;
@@ -143,6 +143,26 @@
 		.post > ul > li > img {
 			object-fit: contain;
 			max-width: 100%;
+		}
+	}
+
+	@media (max-width: 576px) {
+		h1 {
+			font-size: 2.25rem;
+		}
+
+		.post {
+			padding: 2rem 2rem;
+		}
+
+		:global {
+			.post > ul > li {
+				padding-left: 0.5rem;
+			}
+
+			.post > ul {
+				padding-left: 1rem;
+			}
 		}
 	}
 </style>

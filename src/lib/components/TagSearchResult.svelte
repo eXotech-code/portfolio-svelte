@@ -100,4 +100,15 @@
 			font-size: 0.75rem;
 		}
 	}
+
+	@media (max-width: 576px) {
+		.post {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.button-holder {
+			width: 100%;
+		}
+	}
 </style>

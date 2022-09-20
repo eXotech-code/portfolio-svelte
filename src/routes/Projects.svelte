@@ -108,4 +108,38 @@
 	img {
 		@include sixteen-by-nine;
 	}
+
+	@media (max-width: 576px) {
+		.project {
+			grid-column-start: unset;
+		}
+
+		.projects {
+			grid-template-columns: 1fr;
+			grid-template-rows: [stories] max-content [project] max-content [steal] max-content;
+		}
+
+		.stories {
+			padding: 0;
+		}
+
+		.project {
+			padding: 0;
+			p {
+				font-size: 1.1rem;
+			}
+		}
+
+		h1 {
+			font-size: 2.25rem;
+		}
+
+		.steal {
+			padding: 2rem;
+			align-items: flex-start;
+			.button {
+				justify-content: space-between;
+			}
+		}
+	}
 </style>

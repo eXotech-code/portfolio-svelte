@@ -5,6 +5,7 @@
 	import { c, cpp, javascript, python, typescript, shell } from "svelte-highlight/languages";
 	import "$lib/ibm-carbon-theme.css";
 	import type { Language } from "svelte-highlight/Highlight.svelte";
+	import MediaQuery from "./MediaQuery.svelte";
 
 	export let lang: string;
 	export let text: string;
@@ -45,7 +46,17 @@
 				<Highlight code={text} {language} />
 			</div>
 			<div class="button-holder">
-				<img on:click={copyCodeBlock} src={copied ? doneIcon : copyIcon} alt="copy button" />
+				{#if copied}
+					<MediaQuery query="(max-width: 576px)" let:matches>
+						<p class="mobile-button-text">Copied</p>
+					</MediaQuery>
+					<img on:click={copyCodeBlock} src={doneIcon} alt="copy button" />
+				{:else}
+					<MediaQuery query="(max-width: 576px)" let:matches>
+						<p class="mobile-button-text">Copy</p>
+					</MediaQuery>
+					<img on:click={copyCodeBlock} src={copyIcon} alt="copy button" />
+				{/if}
 			</div>
 		</div>
 	{:else}
@@ -68,11 +79,14 @@
 		background: #161616;
 		display: grid;
 		grid-template-columns: 1fr 3rem;
+		grid-template-rows: 1fr;
+		grid-template-areas: "code button";
 		padding: 1rem;
 		width: fit-content;
 	}
 
 	.button-holder {
+		grid-area: button;
 		padding: 1rem;
 	}
 
@@ -89,9 +103,42 @@
 
 	:global {
 		pre > code {
+			grid-area: code;
 			font-family: "IBM Plex Mono";
 			font-size: 0.65rem;
 			white-space: pre-wrap;
+		}
+	}
+
+	.mobile-button-text {
+		color: #fff;
+		font-size: 0.75rem;
+	}
+
+	@media (max-width: 576px) {
+		.outer {
+			width: 100%;
+			grid-template-columns: 1fr;
+			grid-template-rows: 3rem max-content;
+			grid-template-areas:
+				"button"
+				"code";
+			div {
+				overflow-x: auto;
+			}
+		}
+
+		.button-holder {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+		:global {
+			pre > code {
+				white-space: unset;
+			}
 		}
 	}
 </style>

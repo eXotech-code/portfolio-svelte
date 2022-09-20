@@ -2,6 +2,7 @@
 	import send from "$lib/icons/send.svg";
 	import Pulsars from "$lib/components/Pulsars.svelte";
 	import type { Notification } from "$lib/types";
+	import MediaQuery from "$lib/components/MediaQuery.svelte";
 
 	export let notification: Notification = { message: "", bad: false };
 
@@ -73,7 +74,11 @@
 			</button>
 		</form>
 	</div>
-	<Pulsars />
+	<MediaQuery query="(min-width: 577px)" let:matches>
+		{#if matches}
+			<Pulsars />
+		{/if}
+	</MediaQuery>
 </section>
 
 <style lang="scss">
@@ -143,6 +148,7 @@
 		border: 1px solid #000;
 		width: 100%;
 		padding: 0.5rem 1rem;
+		border-radius: 0;
 	}
 
 	textarea {
@@ -158,5 +164,34 @@
 		position: absolute;
 		inset: 1rem;
 		pointer-events: all;
+	}
+
+	@media (max-width: 576px) {
+		.contact {
+			grid-template-columns: 1fr;
+		}
+
+		form {
+			padding: 1rem 0;
+		}
+		.form-holder {
+			padding: 1rem 0;
+			z-index: 0;
+		}
+
+		textarea,
+		input {
+			font-size: 1rem;
+			padding: 1rem;
+		}
+
+		form {
+			input {
+				height: 3rem;
+			}
+			textarea {
+				height: 6rem;
+			}
+		}
 	}
 </style>

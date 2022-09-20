@@ -1,5 +1,8 @@
 <script lang="ts">
 	import TagSearchResult from "$lib/components/TagSearchResult.svelte";
+	import { onMount } from "svelte";
+	import { contentLoaded } from "$lib/stores";
+
 	import type { TagSearchResults } from "$lib/types";
 
 	export let data: TagSearchResults;
@@ -14,6 +17,8 @@
 	}
 
 	let tagColour = findTagColour();
+
+	onMount(() => ($contentLoaded = true));
 </script>
 
 <svelte:head>
@@ -22,8 +27,10 @@
 </svelte:head>
 
 <section id="banner" class="banner">
-	<h1>Search results for:</h1>
-	<h1 class="tag" style={`--color: #${tagColour}`}>{data.tag}</h1>
+	<h1>
+		Search results for:
+		<span class="tag" style={`--color: #${tagColour}`}>{data.tag}</span>
+	</h1>
 </section>
 <hr />
 {#if data.blogPosts.length}
@@ -39,7 +46,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 1rem;
 		padding: 5rem;
 	}
 
@@ -50,6 +56,7 @@
 	.tag {
 		font-family: "IBM Plex Mono";
 		color: var(--color);
+		margin-left: 0.5rem;
 	}
 
 	hr {
@@ -62,5 +69,19 @@
 		flex-direction: column;
 		gap: 1rem;
 		padding: 1rem 4rem;
+	}
+
+	@media (max-width: 576px) {
+		h1 {
+			font-size: clamp(2rem, 10vw, 3rem);
+		}
+
+		.banner {
+			padding: 2rem;
+		}
+
+		.results {
+			padding: 1rem;
+		}
 	}
 </style>
