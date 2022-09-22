@@ -48,12 +48,16 @@
 			<div class="button-holder">
 				{#if copied}
 					<MediaQuery query="(max-width: 576px)" let:matches>
-						<p class="mobile-button-text">Copied</p>
+						{#if matches}
+							<p class="mobile-button-text">Copied</p>
+						{/if}
 					</MediaQuery>
 					<img on:click={copyCodeBlock} src={doneIcon} alt="copy button" />
 				{:else}
 					<MediaQuery query="(max-width: 576px)" let:matches>
-						<p class="mobile-button-text">Copy</p>
+						{#if matches}
+							<p class="mobile-button-text">Copy</p>
+						{/if}
 					</MediaQuery>
 					<img on:click={copyCodeBlock} src={copyIcon} alt="copy button" />
 				{/if}

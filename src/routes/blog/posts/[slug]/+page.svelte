@@ -7,6 +7,7 @@
 	import { onMount } from "svelte";
 	import { contentLoaded } from "$lib/stores";
 	import MediaQuery from "$lib/components/MediaQuery.svelte";
+	import ImageMarkdown from "$lib/components/ImageMarkdown.svelte";
 
 	export let data: BlogPost;
 
@@ -58,7 +59,10 @@
 </section>
 <hr />
 <section id="post" class="post">
-	<SvelteMarkdown source={data.content} renderers={{ link: PostLink, code: CodeBlock }} />
+	<SvelteMarkdown
+		source={data.content}
+		renderers={{ link: PostLink, code: CodeBlock, image: ImageMarkdown }}
+	/>
 </section>
 
 <style lang="scss">
