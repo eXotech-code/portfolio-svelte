@@ -11,16 +11,17 @@
 		if (Object.keys(data).length) {
 			Object.values(data).forEach((p) => {
 				if (p.image) {
-					longPosts = [...longPosts, p];
+					longPosts = [p, ...longPosts];
 				} else {
-					shortPosts = [...shortPosts, p];
+					shortPosts = [p, ...shortPosts];
 				}
 			});
 		}
+		console.log(longPosts);
 	}
 
-	$: layoutBig = type === "small" ? longPosts.slice(0, 2) : longPosts.slice(0, 4);
-	$: layoutSmall = shortPosts.slice(-2);
+	$: layoutBig = type === "small" ? longPosts.slice(0, 3) : longPosts.slice(0, 5);
+	$: layoutSmall = shortPosts.slice(0, 3);
 </script>
 
 <div class="blogposts">

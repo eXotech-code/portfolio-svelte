@@ -9,7 +9,7 @@
 <section id="blog-showcase" class="blog-showcase">
 	<h2>Care for a short coffee break?</h2>
 	<div class="layout-big">
-		<BlogLayout {data} />
+		<BlogLayout type="small" {data} />
 		<div class="button-holder">
 			<h1>Still thirsty?</h1>
 			<a class="button" href="/blog">
