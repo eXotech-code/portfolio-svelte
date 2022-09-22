@@ -11,6 +11,8 @@
 
 	export let data: BlogPost;
 
+	let matches = false;
+
 	onMount(() => ($contentLoaded = true));
 </script>
 
@@ -37,11 +39,13 @@
 			<h3>{data.description}</h3>
 			<div class="banner-container">
 				<p class="banner-container-name">Tags:</p>
-				<div class="tags">
-					{#each data.tags as tag}
-						<Tag borderColor={tag.colour} name={tag.name} />
-					{/each}
-				</div>
+				<MediaQuery query="(max-width: 576px)" let:matches>
+					<div class="tags" style={`--length: ${matches ? 4 : 8}`}>
+						{#each data.tags as tag}
+							<Tag borderColor={tag.colour} name={tag.name} />
+						{/each}
+					</div>
+				</MediaQuery>
 			</div>
 			<div class="banner-container">
 				<p class="banner-container-name">Author:</p>
@@ -121,7 +125,7 @@
 
 	.tags {
 		display: grid;
-		grid-template-columns: repeat(8, max-content);
+		grid-template-columns: repeat(var(--length), max-content);
 		gap: 0.5rem;
 	}
 
