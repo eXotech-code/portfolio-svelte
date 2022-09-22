@@ -139,6 +139,11 @@
 			font-weight: 300;
 			text-align: justify;
 		}
+
+		.post > p:first-child {
+			margin-top: 0;
+		}
+
 		.post > ul {
 			list-style-type: "—";
 		}
