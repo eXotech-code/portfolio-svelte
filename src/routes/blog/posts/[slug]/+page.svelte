@@ -135,6 +135,7 @@
 
 	:global {
 		.post > p {
+			margin-top: 1rem;
 			font-weight: 300;
 			text-align: justify;
 		}
