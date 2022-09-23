@@ -20,11 +20,11 @@
 		console.log(longPosts);
 	}
 
-	$: layoutBig = type === "small" ? longPosts.slice(0, 3) : longPosts.slice(0, 5);
+	$: layoutBig = type === "small" ? longPosts.slice(0, 2) : longPosts.slice(0, 5);
 	$: layoutSmall = shortPosts.slice(0, 3);
 </script>
 
-<div class="blogposts">
+<div class={`blogposts ${type === "big" ? "big" : ""}`}>
 	{#each layoutBig as post}
 		<Post {post} />
 	{/each}
@@ -43,6 +43,10 @@
 		padding: 1rem;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
+	}
+
+	.big {
+		grid-template-columns: repeat(4, 1fr);
 	}
 
 	.layout-small {

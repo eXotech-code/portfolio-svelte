@@ -32,7 +32,7 @@
 <hr />
 <section id="blog" class="blog">
 	<h2>My latest adventures</h2>
-	<BlogLayout {data} />
+	<BlogLayout type="big" {data} />
 </section>
 
 <style lang="scss">

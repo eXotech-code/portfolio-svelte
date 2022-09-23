@@ -64,7 +64,7 @@
 
 	.tags {
 		display: grid;
-		grid-template-columns: repeat(3, max-content);
+		grid-template-columns: repeat(4, max-content);
 		grid-template-rows: repeat(2, 1rem);
 		gap: 0.5rem;
 		flex-grow: 1;

@@ -11,8 +11,6 @@
 
 	export let data: BlogPost;
 
-	let matches = false;
-
 	onMount(() => ($contentLoaded = true));
 </script>
 
@@ -25,11 +23,11 @@
 </svelte:head>
 
 <section id="banner" class="banner">
-	<div class="banner-content">
+	<div class={`banner-content ${data.image ? "with-graphic" : "no-graphic"}`}>
 		<div class="banner-text">
 			<h1>{data.title}</h1>
 			<MediaQuery query="(max-width: 576px)" let:matches>
-				{#if matches}
+				{#if matches && data.image}
 					<div class="graphic">
 						<img alt={data.title} src={`../../blog/${data.id}.webp`} />
 					</div>
@@ -53,7 +51,7 @@
 			</div>
 		</div>
 		<MediaQuery query="(min-width: 577px)" let:matches>
-			{#if matches}
+			{#if matches && data.image}
 				<div class="graphic">
 					<img alt={data.title} src={`../../blog/${data.id}.webp`} />
 				</div>
@@ -74,6 +72,13 @@
 
 	.banner-content {
 		display: grid;
+	}
+
+	.no-graphic {
+		grid-template-columns: 1fr;
+	}
+
+	.with-graphic {
 		grid-template-columns: 1fr 1fr;
 	}
 
@@ -144,6 +149,31 @@
 			margin-top: 0;
 		}
 
+		.post > blockquote {
+			color: #666;
+			font-weight: 300;
+			display: flex;
+			justify-content: center;
+			margin: 1rem 4rem;
+		}
+
+		.post > blockquote::before {
+			content: open-quote;
+			font-size: 2rem;
+			margin-right: 1rem;
+		}
+
+		.post > blockquote::after {
+			content: close-quote;
+			font-size: 2rem;
+			margin-left: 1rem;
+			align-self: flex-end;
+		}
+
+		.post > blockquote > p {
+			display: inline;
+		}
+
 		.post > ul {
 			list-style-type: "—";
 		}
@@ -188,6 +218,10 @@
 
 			.post > ul {
 				padding-left: 1rem;
+			}
+
+			.post > blockquote::after {
+				transform: translateY(1rem);
 			}
 		}
 
