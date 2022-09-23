@@ -2,6 +2,10 @@
 	export let href = "";
 	export let title: string | undefined = undefined;
 	export let text = "";
+
+	// Marked weird quote escape workaround.
+	text = text.replaceAll("&#39;", "'");
+	text = text.replaceAll("&#8220", '"');
 </script>
 
 <div class="image">
