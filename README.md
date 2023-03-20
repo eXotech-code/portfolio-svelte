@@ -26,10 +26,9 @@ The back-end is a simple Python + Flask REST API. A MySQL database
 which uses Connector/Python feeds content for the blog and collects
 messages sent via the contact section's form.
 
-I use a mix of [Material Design's](https://fonts.google.com/icons)
-and [IBM Carbon Design System's](https://carbondesignsystem.com/guidelines/icons/library/)
-icons. I think they fit the overall vibe of my portfolio well and
-blend well with each other.
+I'm using [IBM Carbon Design System's](https://carbondesignsystem.com/guidelines/icons/library/)
+icons. I am a great fan of Carbon and I believe that their icons
+fit the overall hard-cornered vibe of y portfolio.
 
 For the fonts i decided to go with PlayFair Display for
 big titles and Open Sans for longer form text.
@@ -37,3 +36,5 @@ I also decided to use two variants of my favourite font - IBM Plex
 for the interactive elements. IBM Plex Sans is used for buttons
 and IBM Plex Mono - for the blog post tags that you can push
 in order to search for posts with the same tags.
+IBM Plex Sans sometimes coexists with Carbon icons and they look
+well together.
